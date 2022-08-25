@@ -1,20 +1,15 @@
 import { useState } from "react"
 
-const FilterRecord = ({ handleFilter }) => {
+const FilterRecord = ({ handleFilter, handleCheckBox, studentChecklist }) => {
   const [filter, setFilter] = useState({
     from: 0,
     to: 0,
     class: [],
   })
-  const [studentlist,setStudentlist] = useState([])
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setFilter({ ...filter, [name]: value })
-  }
-
-  const handleCheckBox = () => {
-
   }
 
   return (
@@ -35,15 +30,15 @@ const FilterRecord = ({ handleFilter }) => {
           <div className="">
             <label className="col-form-label col-sm-2 pt-0">Class</label>
             <div class="form-check form-check-inline">
-              <input name="class" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="A" />
+              <input onChange={handleCheckBox} checked={studentChecklist.includes("Def3")} name="Def3" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Def3" />
               <label class="form-check-label" for="inlineCheckbox1">A</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="class" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="B" />
+              <input onChange={handleCheckBox} checked={studentChecklist.includes("Def4")} name="Def4" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Def4" />
               <label class="form-check-label" for="inlineCheckbox2">B</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="class" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="C" />
+              <input onChange={handleCheckBox} checked={studentChecklist.includes("Def5")} name="Def5" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Def5" />
               <label class="form-check-label" for="inlineCheckbox3">D</label>
             </div>
           </div>

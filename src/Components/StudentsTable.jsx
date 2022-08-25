@@ -1,4 +1,4 @@
-const StudentsTable = ({ students, handleDelete }) => {
+const StudentsTable = ({ students, handleDelete, studentChecklist }) => {
   return (
     <>
       <table class="table">
@@ -14,6 +14,7 @@ const StudentsTable = ({ students, handleDelete }) => {
         <tbody>
           {
             students && students.map((item) => (
+              studentChecklist.includes(item.name) &&
               <tr>
                 <td>{item.name}</td>
                 <td>{item.score}</td>
