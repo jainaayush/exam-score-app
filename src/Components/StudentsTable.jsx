@@ -1,26 +1,42 @@
-const StudentsTable = ({ students, handleDelete, studentChecklist }) => {
+import { useTranslation } from "react-i18next";
+
+const StudentsTable = ({ students, handleDelete, studentChecklist, filterStatus }) => {
+  const { t } = useTranslation();
+
+  const tableData = (item) => (
+    <tr>
+      <td>{item.name}</td>
+      <td>{item.score}</td>
+      <td>{item.class}</td>
+      <td>
+        <div
+          onClick={() => handleDelete(item.id)}
+          className="btn btn-danger">
+          Delete
+        </div>
+      </td>
+    </tr>
+  )
   return (
     <>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Student Name</th>
-            <th scope="col">Score</th>
-            <th scope="col">Class</th>
-            <th scope="col">Actions</th>
+            <th scope="col">{t("student_name")}</th>
+            <th scope="col">{t("score")}</th>
+            <th scope="col">{t("class")}</th>
+            <th scope="col">{t("actions")}</th>
 
           </tr>
         </thead>
         <tbody>
           {
             students && students.map((item) => (
-              studentChecklist.includes(item.name) &&
-              <tr>
-                <td>{item.name}</td>
-                <td>{item.score}</td>
-                <td>{item.class}</td>
-                <td><div onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</div></td>
-              </tr>
+              filterStatus ?
+                studentChecklist.includes(item.name) &&
+                tableData(item)
+                :
+                tableData(item)
             ))
           }
         </tbody>
