@@ -10,7 +10,8 @@ const App = () => {
   const [students, setStudents] = useState(studentDetails)
   const [studentChecklist, setStudentChecklist] = useState([])
   const [filterStatus, handleFilterStatus] = useState(false)
-
+  const [sortArrayIcon, setSortArrayIcon] = useState(true)
+  console.log(sortArrayIcon)
   const handleCreateRecord = (record) => {
     setStudents([...students, record])
   }
@@ -39,10 +40,12 @@ const App = () => {
   }
 
   const sortArray = (order) => {
-    if (order === "asc") {
+    if (order) {
       setStudents([...students.sort((a, b) => (a.score) - (b.score))])
+      setSortArrayIcon(!order)
     } else {
       setStudents([...students.sort((a, b) => (b.score) - (a.score))])
+      setSortArrayIcon(!order)
     }
   }
 
@@ -55,13 +58,13 @@ const App = () => {
           <button className='btn btn-secondary ms-2' onClick={() => changeLanguage("hi")}>HI</button>
           <button className='btn btn-secondary ms-2' onClick={() => changeLanguage("en")}>EN</button>
         </div>
-        <div className='col-8 p-0'>
+        <div className='col-xl-8 col-lg-10 col-md-12 col-12 p-0'>
           <div className='my-5'>
             <CreateRecord
               handleCreateRecord={handleCreateRecord}
             />
           </div>
-          <div className='border my-5'>
+          <div className='border my-5 shadow rounded-4 bg-white p-4'>
             <FilterRecord
               sortArray={sortArray}
               handleFilter={handleFilter}
@@ -69,9 +72,13 @@ const App = () => {
               handleFilterStatusFunc={handleFilterStatusFunc}
             />
             <StudentsTable
+              sortArray={sortArray}
               students={students}
               handleDelete={handleDelete} studentChecklist={studentChecklist}
               filterStatus={filterStatus}
+              setSortArrayIcon={setSortArrayIcon}
+              sortArrayIcon={sortArrayIcon}
+
             />
           </div>
         </div>

@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 
-const StudentsTable = ({ students, handleDelete, studentChecklist, filterStatus }) => {
+const StudentsTable = ({ students, handleDelete, sortArrayIcon, sortArray, studentChecklist, filterStatus }) => {
   const { t } = useTranslation();
-
+  const up = '\u25B2'
+  const down = '\u25BC'
   const tableData = (item) => (
     <tr>
       <td>{item.name}</td>
@@ -23,7 +24,7 @@ const StudentsTable = ({ students, handleDelete, studentChecklist, filterStatus 
         <thead>
           <tr>
             <th scope="col">{t("student_name")}</th>
-            <th scope="col">{t("score")}</th>
+            <th scope="col">{t("score")} <span onClick={() => sortArray(sortArrayIcon)}>{sortArrayIcon ? up : down}</span></th>
             <th scope="col">{t("class")}</th>
             <th scope="col">{t("actions")}</th>
 
