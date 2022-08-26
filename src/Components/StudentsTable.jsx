@@ -18,7 +18,7 @@ const StudentsTable = ({ students, handleDelete, studentChecklist }) => {
                 <td>{item.name}</td>
                 <td>{item.score}</td>
                 <td>{item.class}</td>
-                <td><div id="deleteButton" onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</div></td>
+                <td><div data-testid="delete" onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</div></td>
               </tr>
             ))
           }

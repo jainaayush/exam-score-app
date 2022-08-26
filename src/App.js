@@ -36,7 +36,7 @@ const App = () => {
       selected.push(value);
     }
     setStudentChecklist([...selected])
-    console.log(studentChecklist)
+    console.log("87654", studentChecklist)
   }
 
 

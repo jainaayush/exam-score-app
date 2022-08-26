@@ -37,7 +37,7 @@ const CreateRecord = ({
             </div>
             <div className="form-group">
               <label for="exampleInputPassword1">Score</label>
-              <input onChange={(e) => handleChange(e)} name="score" type="number" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+              <input onChange={(e) => handleChange(e)} name="score" type="number" className="form-control" id="exampleInputPassword1" placeholder="score" />
             </div>
             <fieldset className="form-group">
               <div className="row">
@@ -64,7 +64,7 @@ const CreateRecord = ({
                 </div>
               </div>
             </fieldset>
-            <button onClick={(e) => handleSubmit(e)} type="submit" className="btn btn-primary mt-3">Submit</button>
+            <button data-testid="submit" onClick={(e) => handleSubmit(e)} type="submit" className="btn btn-primary mt-3">Submit</button>
           </form>
         </div>
       </div>

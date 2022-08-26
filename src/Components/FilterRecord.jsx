@@ -20,11 +20,11 @@ const FilterRecord = ({ handleFilter, handleCheckBox, studentChecklist }) => {
             <label className="col-form-label col-sm-2 pt-0">Score</label>
             <div className="form-group">
               <label for="exampleInputPassword1">Score</label>
-              <input onChange={(e) => handleChange(e)} name="from" type="number" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+              <input data-testid="score" onChange={(e) => handleChange(e)} name="from" type="number" className="form-control" id="exampleInputPassword1" placeholder="From" />
             </div>
             <div className="form-group">
               <label for="exampleInputPassword1">Score</label>
-              <input onChange={(e) => handleChange(e)} name="to" type="number" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+              <input onChange={(e) => handleChange(e)} name="to" type="number" className="form-control" id="exampleInputPassword1" placeholder="To" />
             </div>
           </div>
           <div className="">
@@ -43,7 +43,7 @@ const FilterRecord = ({ handleFilter, handleCheckBox, studentChecklist }) => {
             </div>
           </div>
 
-          <div onClick={() => handleFilter(filter)} className="btn btn-secondary">Filter</div>
+          <div data-testid="submit" onClick={() => handleFilter(filter)} className="btn btn-secondary">Filter</div>
 
         </div>
       </div>
