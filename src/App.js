@@ -9,6 +9,7 @@ const App = () => {
   const { t, i18n } = useTranslation();
   const [students, setStudents] = useState(studentDetails)
   const [studentChecklist, setStudentChecklist] = useState([])
+  const [filterStatus, handleFilterStatus] = useState(false)
   const handleCreateRecord = (record) => {
     setStudents([...students, record])
   }
@@ -22,21 +23,18 @@ const App = () => {
     setStudents(up)
   }
 
-  const handleFilter = (filter) => {
-    console.log(filter)
+  const handleFilter = (filter, checkList, status) => {
+    console.log(filter, checkList)
+    setStudentChecklist([...checkList])
+    handleFilterStatus(status)
   }
 
-  const handleCheckBox = (event) => {
-    const { value } = event.target
-    const selected = studentChecklist;
-    let find = selected.indexOf(value);
-    if (find > -1 && selected.length >= 1) {
-      selected.splice(find, 1);
-    } else if (find === -1) {
-      selected.push(value);
+  const handleFilterStatusFunc = (status) => {
+    console.log(status)
+    if (!status) {
+      setStudentChecklist([])
+      handleFilterStatus(false)
     }
-    setStudentChecklist([...selected])
-    console.log(studentChecklist)
   }
 
 
@@ -50,11 +48,24 @@ const App = () => {
         </div>
         <div className='col-8 p-0'>
           <div className='my-5'>
-            <CreateRecord handleCreateRecord={handleCreateRecord} />
+            <CreateRecord
+              handleCreateRecord={handleCreateRecord}
+            />
           </div>
           <div className='border my-5'>
-            <FilterRecord handleFilter={handleFilter} handleCheckBox={handleCheckBox} studentChecklist={studentChecklist} />
-            <StudentsTable students={students} handleDelete={handleDelete} studentChecklist={studentChecklist} />
+            <FilterRecord
+              students={students}
+              setStudents={setStudents}
+              handleFilter={handleFilter}
+              studentChecklist={studentChecklist}
+              setStudentChecklist={setStudentChecklist}
+              handleFilterStatusFunc={handleFilterStatusFunc}
+            />
+            <StudentsTable
+              students={students}
+              handleDelete={handleDelete} studentChecklist={studentChecklist}
+              filterStatus={filterStatus}
+            />
           </div>
         </div>
       </div>
