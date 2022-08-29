@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreateRecord from './Components/CreateRecord';
 import FilterRecord from './Components/FilterRecord';
 import StudentsTable from './Components/StudentsTable';
@@ -11,7 +11,7 @@ const App = () => {
   const [studentChecklist, setStudentChecklist] = useState([])
   const [filterStatus, handleFilterStatus] = useState(false)
   const [sortArrayIcon, setSortArrayIcon] = useState(true)
-  console.log(sortArrayIcon)
+
   const handleCreateRecord = (record) => {
     setStudents([...students, record])
   }
@@ -26,25 +26,32 @@ const App = () => {
   }
 
   const handleFilter = (filter, checkList, status) => {
-    console.log(filter, checkList)
     setStudentChecklist([...checkList])
     handleFilterStatus(status)
+    let record = students.filter((item) => {
+      if (item.score >= parseInt(filter.from) && item.score <= parseInt(filter.to)) {
+        return item
+      }
+    })
+    setStudents(record)
   }
 
+  console.log("Filter Students", students)
+
   const handleFilterStatusFunc = (status) => {
-    console.log(status)
     if (!status) {
       setStudentChecklist([])
+      setStudents(studentDetails)
       handleFilterStatus(false)
     }
   }
 
-  const sortArray = (order) => {
+  const sortArray = (order, by) => {
     if (order) {
-      setStudents([...students.sort((a, b) => (a.score) - (b.score))])
+      setStudents([...students.sort((a, b) => (a[by]) - (b[by]))])
       setSortArrayIcon(!order)
     } else {
-      setStudents([...students.sort((a, b) => (b.score) - (a.score))])
+      setStudents([...students.sort((a, b) => (b[by]) - (a[by]))])
       setSortArrayIcon(!order)
     }
   }

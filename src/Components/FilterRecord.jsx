@@ -25,7 +25,6 @@ const FilterRecord = ({ handleFilter, sortArray, handleFilterStatusFunc }) => {
       selected.push(value);
     }
     setChecklist([...selected])
-    console.log(Checklist)
   }
   const handleFilterBtn = (status) => {
     handleFilter(filter, Checklist, status)

@@ -19,12 +19,12 @@ const CreateRecord = ({
     event.preventDefault()
     if (record.name !== "" && record.class !== "") {
       handleCreateRecord(record)
+      setRecord({
+        name: "",
+        score: 0,
+        class: "",
+      })
     }
-    setRecord({
-      name3: "",
-      score: 0,
-      class: "",
-    })
   }
 
   return (

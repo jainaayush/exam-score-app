@@ -18,7 +18,7 @@ const StudentsTable = ({ students, handleDelete, sortArrayIcon, sortArray, stude
         <thead>
           <tr>
             <th scope="col">{t("student_name")}</th>
-            <th scope="col">{t("score")} <span onClick={() => sortArray(sortArrayIcon)}>{sortArrayIcon ? up : down}</span></th>
+            <th scope="col">{t("score")} <span onClick={() => sortArray(sortArrayIcon, 'score')}>{sortArrayIcon ? up : down}</span></th>
             <th scope="col">{t("class")}</th>
             <th scope="col">{t("actions")}</th>
           </tr>
