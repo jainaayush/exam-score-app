@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 const App = () => {
   const { t, i18n } = useTranslation();
   const [students, setStudents] = useState(studentDetails)
+  const [tempStudents, setTempStudents] = useState(studentDetails)
+
   const [studentChecklist, setStudentChecklist] = useState([])
   const [filterStatus, handleFilterStatus] = useState(false)
   const [sortArrayIcon, setSortArrayIcon] = useState(true)
@@ -26,14 +28,20 @@ const App = () => {
   }
 
   const handleFilter = (filter, checkList, status) => {
-    setStudentChecklist([...checkList])
+    let record = students
+    if (filter.to > 0) {
+      record = record.filter((item) => {
+        if (item.score >= parseInt(filter.from) && item.score <= parseInt(filter.to)) {
+          return item
+        }
+      })
+      setTempStudents(record)
+    }
+    if (checkList.length) {
+      record = record.filter((item) => checkList.includes(item.class))
+    }
+    setTempStudents(record)
     handleFilterStatus(status)
-    let record = students.filter((item) => {
-      if (item.score >= parseInt(filter.from) && item.score <= parseInt(filter.to)) {
-        return item
-      }
-    })
-    setStudents(record)
   }
 
   console.log("Filter Students", students)
@@ -41,17 +49,16 @@ const App = () => {
   const handleFilterStatusFunc = (status) => {
     if (!status) {
       setStudentChecklist([])
-      setStudents(studentDetails)
       handleFilterStatus(false)
     }
   }
 
   const sortArray = (order, by) => {
     if (order) {
-      setStudents([...students.sort((a, b) => (a[by]) - (b[by]))])
+      setStudents([...(filterStatus ? tempStudents : students).sort((a, b) => (a[by]) - (b[by]))])
       setSortArrayIcon(!order)
     } else {
-      setStudents([...students.sort((a, b) => (b[by]) - (a[by]))])
+      setStudents([...(filterStatus ? tempStudents : students).sort((a, b) => (b[by]) - (a[by]))])
       setSortArrayIcon(!order)
     }
   }
@@ -80,7 +87,7 @@ const App = () => {
             />
             <StudentsTable
               sortArray={sortArray}
-              students={students}
+              students={filterStatus ? tempStudents : students}
               handleDelete={handleDelete} studentChecklist={studentChecklist}
               filterStatus={filterStatus}
               setSortArrayIcon={setSortArrayIcon}

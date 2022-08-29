@@ -51,49 +51,45 @@ const FilterRecord = ({ handleFilter, sortArray, handleFilterStatusFunc }) => {
                   id="exampleInputPassword1"
                   placeholder={t("To")} />
               </div>
-            </div>  
+            </div>
           </div>
           <div className="d-block">
             <label className="col-form-label pt-0 pb-1">{t("class")}</label>
             <div className="">
               <div class="form-check form-check-inline">
                 <input onChange={handleCheckBox}
-                  checked={Checklist.includes("Def3")}
-                  name="Def3" class="form-check-input"
+                  checked={Checklist.includes("A")}
+                  name="A" class="form-check-input"
                   type="checkbox" id="inlineCheckbox1"
-                  value="Def3" />
+                  value="A" />
                 <label class="form-check-label" for="inlineCheckbox1">A</label>
               </div>
               <div class="form-check form-check-inline">
                 <input onChange={handleCheckBox}
-                  checked={Checklist.includes("Def4")}
-                  name="Def4"
+                  checked={Checklist.includes("B")}
+                  name="B"
                   class="form-check-input"
                   type="checkbox" id="inlineCheckbox2"
-                  value="Def4" />
+                  value="B" />
                 <label class="form-check-label" for="inlineCheckbox2">B</label>
               </div>
               <div class="form-check form-check-inline">
                 <input onChange={handleCheckBox}
-                  checked={Checklist.includes("Def5")}
-                  name="Def5"
+                  checked={Checklist.includes("C")}
+                  name="C"
                   class="form-check-input"
                   type="checkbox"
                   id="inlineCheckbox3"
-                  value="Def5" />
+                  value="C" />
                 <label class="form-check-label" for="inlineCheckbox3">C</label>
               </div>
-            </div>  
+            </div>
           </div>
           <div className="">
             <div onClick={() => handleFilterBtn(true)}
               className="btn btn-secondary px-4 py-2 me-2">Filter</div>
             <div onClick={() => { handleFilterStatusFunc(false) }}
               className="btn btn-secondary px-4 py-2 ms-2">Reset</div>
-            {/* <div onClick={() => sortArray("asc")}
-              className="btn btn-secondary">accending</div>
-            <div onClick={() => sortArray("desc")}
-              className="btn btn-secondary">descending</div> */}
           </div>
         </div>
       </div>
