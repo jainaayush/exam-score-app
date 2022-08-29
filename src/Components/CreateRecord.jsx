@@ -32,14 +32,14 @@ const CreateRecord = ({
       <div className="row mx-0 d-flex justify-content-center">
         <div className="col-9 border rounded-4 shadow bg-white px-4 py-5">
           <form className="px-4">
-          <label className="h4 pb-3 text-center w-100">Create Student Record</label>
+            <label className="h4 pb-3 text-center w-100">Create Student Record</label>
             <div className="form-group mb-3">
               <label for="exampleInputEmail1" className="pb-1">{t("student_name")}</label>
               <input name="name" onChange={(e) => handleChange(e)} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={t("enter_student_name")} />
             </div>
-            <div className="form-group mb-3">
-              <label for="exampleInputPassword1" className="pb-1">{t("score")}</label>
-              <input onChange={(e) => handleChange(e)} name="score" type="number" className="form-control" id="exampleInputPassword1" placeholder={t("enter_score")} />
+            <div className="form-group">
+              <label for="exampleInputPassword1">Score</label>
+              <input onChange={(e) => handleChange(e)} name="score" type="number" className="form-control" id="exampleInputPassword1" placeholder="score" />
             </div>
             <fieldset className="form-group mb-3">
               <div className="row">
@@ -66,10 +66,10 @@ const CreateRecord = ({
                 </div>
               </div>
             </fieldset>
-            <button onClick={(e) => handleSubmit(e)} type="submit" className="btn btn-primary px-5 py-2 ms-auto d-flex">Submit</button>
-          </form>
-        </div>
-      </div>
+            <button data-testid="submit" onClick={(e) => handleSubmit(e)} type="submit" className="btn btn-primary mt-3">Submit</button>
+          </form >
+        </div >
+      </div >
     </>
   )
 }
